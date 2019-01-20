@@ -14,6 +14,8 @@ function fish_prompt
     set cwd (prompt_pwd)
   end
 
+  echo -n "$logo "
+
   if git_is_repo
     if test "$theme_short_path" = 'yes'
       set root_folder (command git rev-parse --show-toplevel ^/dev/null)
@@ -21,14 +23,14 @@ function fish_prompt
       set cwd (echo $PWD | sed -e "s|$parent_root_folder/||")
     end
 
-    echo -ns "$logo $cwd at "(set_color --bold white) (git_branch_name) $reset_color " "
+    echo -ns "$cwd at"(set_color --bold white) (git_branch_name) $reset_color
 
     if git_is_touched
-      echo -n -s $error_color $dirty $reset_color $reset_color " "
+      echo -ns "$error_color $dirty $reset_color"
     else
-      echo -n -s $success_color (git_ahead $none) $reset_color $reset_color " "
+      echo -ns "$success_color $none $reset_color"
     end
   else
-    echo -ns "$logo $cwd "
+    echo -ns "$cwd "
   end
 end
