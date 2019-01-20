@@ -23,7 +23,7 @@ function fish_prompt
       set cwd (echo $PWD | sed -e "s|$parent_root_folder/||")
     end
 
-    echo -ns "$cwd at"(set_color --bold white) (git_branch_name) $reset_color
+    echo -ns "$cwd at "(set_color --bold white) (git_branch_name) $reset_color
 
     if git_is_touched
       echo -ns "$error_color $dirty $reset_color"
